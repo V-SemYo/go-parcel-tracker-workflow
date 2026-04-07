@@ -104,6 +104,20 @@ func main() {
 	}
 	defer db.Close()
 
+	createTableSQL := `
+CREATE TABLE IF NOT EXISTS parcel (
+    number INTEGER PRIMARY KEY AUTOINCREMENT,
+    client INTEGER,
+    status TEXT,
+    address TEXT,
+    created_at TEXT
+);`
+	_, err = db.Exec(createTableSQL)
+	if err != nil {
+		fmt.Println("Ошибка создания таблицы:", err)
+		return
+	}
+
 	store := NewParcelStore(db)
 	service := NewParcelService(store)
 
