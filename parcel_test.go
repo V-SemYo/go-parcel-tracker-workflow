@@ -36,6 +36,18 @@ func TestAddGetDelete(t *testing.T) {
 		require.NoError(t, err)
 	}
 	defer db.Close()
+
+	createTableSQL := `
+CREATE TABLE IF NOT EXISTS parcel (
+    number INTEGER PRIMARY KEY AUTOINCREMENT,
+    client INTEGER,
+    status TEXT,
+    address TEXT,
+    created_at TEXT
+);`
+	_, err = db.Exec(createTableSQL)
+	require.NoError(t, err)
+
 	store := NewParcelStore(db)
 	parcel := getTestParcel()
 
@@ -66,6 +78,18 @@ func TestSetAddress(t *testing.T) {
 		require.NoError(t, err)
 	}
 	defer db.Close()
+
+	createTableSQL := `
+CREATE TABLE IF NOT EXISTS parcel (
+    number INTEGER PRIMARY KEY AUTOINCREMENT,
+    client INTEGER,
+    status TEXT,
+    address TEXT,
+    created_at TEXT
+);`
+	_, err = db.Exec(createTableSQL)
+	require.NoError(t, err)
+
 	store := NewParcelStore(db)
 	parcel := getTestParcel()
 
@@ -96,6 +120,18 @@ func TestSetStatus(t *testing.T) {
 		require.NoError(t, err)
 	}
 	defer db.Close()
+
+	createTableSQL := `
+CREATE TABLE IF NOT EXISTS parcel (
+    number INTEGER PRIMARY KEY AUTOINCREMENT,
+    client INTEGER,
+    status TEXT,
+    address TEXT,
+    created_at TEXT
+);`
+	_, err = db.Exec(createTableSQL)
+	require.NoError(t, err)
+
 	store := NewParcelStore(db)
 	parcel := getTestParcel()
 
@@ -125,6 +161,18 @@ func TestGetByClient(t *testing.T) {
 		require.NoError(t, err)
 	}
 	defer db.Close()
+
+	createTableSQL := `
+CREATE TABLE IF NOT EXISTS parcel (
+    number INTEGER PRIMARY KEY AUTOINCREMENT,
+    client INTEGER,
+    status TEXT,
+    address TEXT,
+    created_at TEXT
+);`
+	_, err = db.Exec(createTableSQL)
+	require.NoError(t, err)
+
 	store := NewParcelStore(db)
 
 	parcels := []Parcel{
